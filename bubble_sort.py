@@ -3,7 +3,6 @@ from tkinter import *
 from tkinter import messagebox, ttk
 from PIL import Image, ImageTk
 
-
 seq = []
 
 def get_input():
@@ -45,7 +44,7 @@ window.resizable(True,True)
 
 set_window_style()
 
-input_frame = ttk.Frame(window)
+input_frame = ttk.Frame(window, style='My.TFrame')
 input_frame.grid(pady=10)
 
 label_1 = ttk.Label(input_frame, text="Enter numbers, space separeted: ", font=('Helvecia', 10))
