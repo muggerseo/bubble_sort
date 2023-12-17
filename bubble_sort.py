@@ -15,7 +15,7 @@ def update_result_label():
     result_label.config(text=f"Result: {seq}")
     result_label.grid(row=5, columnspan=2, pady=20)
 
-def bubble_sort_increase():
+def sort_increase():
     global seq
     for i in range(len(seq)):
         for j in range(len(seq)-i-1):
@@ -23,7 +23,7 @@ def bubble_sort_increase():
                 seq[j], seq[j+1] = seq[j+1], seq[j]
     update_result_label()
 
-def bubble_sort_decrease():
+def sort_decrease():
     global seq
     for i in range(len(seq)):
         for j in range(len(seq)-i-1):
@@ -33,7 +33,8 @@ def bubble_sort_decrease():
 
 def set_window_style():
     s = ttk.Style()
-    s.configure('My.TFrame', background='#B1C381')
+    s.configure('My.TFrame', background='#163020')
+    s.configure('TButton', background='#F0DBAF', foreground='#7ED7C1', padding=(10,5))
 
 # seq = 7 33 73 642 4322 6677 0 1 2 
 
@@ -54,14 +55,14 @@ input_1.grid(row=1, columnspan=2)
 input_1.focus_set()
 input_1.bind('<Return>', lambda event: get_input())
 
-input_button = ttk.Button(input_frame, text='Submit', command=get_input)
+input_button = ttk.Button(input_frame, text='Submit', command=get_input, style='TButton')
 input_button.grid(row=2, columnspan=2, pady=10)
 
-sort_increase_button = ttk.Button(input_frame, text='Increase', command=bubble_sort_increase)
-sort_increase_button.grid(row=3, column=0, pady=10)
+increase_button = ttk.Button(input_frame, text='Increase', command=sort_increase)
+increase_button.grid(row=3, column=0, pady=10)
 
-sort_decrese_button = ttk.Button(input_frame, text='Decrease', command=bubble_sort_decrease)
-sort_decrese_button.grid(row=3, column=1, pady=10)
+decrese_button = ttk.Button(input_frame, text='Decrease', command=sort_decrease)
+decrese_button.grid(row=3, column=1, pady=10)
 
 result_label = ttk.Label(input_frame, text="")
 result_label.grid(row=5, columnspan=2, pady=20)
