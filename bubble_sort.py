@@ -33,8 +33,9 @@ def sort_decrease():
 
 def set_window_style():
     s = ttk.Style()
-    s.configure('My.TFrame', background='#163020')
-    s.configure('TButton', background='#F0DBAF', foreground='#7ED7C1', padding=(10,5))
+    s.configure('My.TFrame', background='lightgrey')
+    s.configure('TButton', background='orange', foreground='black', padding=(10,5))
+    s.configure('TLabel', foreground='black', font=('Arial', 10, 'bold'))
 
 # seq = 7 33 73 642 4322 6677 0 1 2 
 
@@ -48,7 +49,7 @@ set_window_style()
 input_frame = ttk.Frame(window, style='My.TFrame')
 input_frame.grid(pady=10)
 
-label_1 = ttk.Label(input_frame, text="Enter numbers, space separeted: ", font=('Helvecia', 10))
+label_1 = ttk.Label(input_frame, text="Enter numbers, space separeted: ", style='TLabel')
 label_1.grid(row=0, columnspan=2, pady=10, padx=20)
 input_1 = tk.Entry(input_frame, bg='white')
 input_1.grid(row=1, columnspan=2)
