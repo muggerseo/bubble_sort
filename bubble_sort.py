@@ -33,8 +33,8 @@ def sort_decrease():
 
 def set_window_style():
     s = ttk.Style()
-    s.configure('My.TFrame', background='lightgrey')
-    s.configure('TButton', background='orange', foreground='black', padding=(10,5))
+    s.configure('TFrame', background='lightgrey')
+    s.configure('TButton', background='orange', foreground='black', font=('Times new Roman', 10, 'bold'), padding=(10,5))
     s.configure('TLabel', foreground='black', font=('Arial', 10, 'bold'))
 
 # seq = 7 33 73 642 4322 6677 0 1 2 
@@ -46,7 +46,7 @@ window.resizable(True,True)
 
 set_window_style()
 
-input_frame = ttk.Frame(window, style='My.TFrame')
+input_frame = ttk.Frame(window, style='TFrame')
 input_frame.grid(pady=10)
 
 label_1 = ttk.Label(input_frame, text="Enter numbers, space separeted: ", style='TLabel')
@@ -61,9 +61,11 @@ input_button.grid(row=2, columnspan=2, pady=10)
 
 increase_button = ttk.Button(input_frame, text='Increase', command=sort_increase)
 increase_button.grid(row=3, column=0, pady=10)
+increase_button.bind('<Return>', lambda event: sort_increase())
 
 decrese_button = ttk.Button(input_frame, text='Decrease', command=sort_decrease)
 decrese_button.grid(row=3, column=1, pady=10)
+decrese_button.bind('<Return>', lambda event: sort_decrease())
 
 result_label = ttk.Label(input_frame, text="")
 result_label.grid(row=5, columnspan=2, pady=20)
