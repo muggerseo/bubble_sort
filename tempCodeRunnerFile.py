@@ -1,0 +1,1 @@
+result_label = ttk.Label(input_frame, text="")
