@@ -12,7 +12,7 @@ def get_input():
 
 def update_result_label():
     global seq
-    result_label.config(text=f"Result: {seq}")
+    result_label.config(text=f"Result:\n\n{seq}")
     result_label.grid(row=5, columnspan=2, pady=20)
 
 def sort_increase():
@@ -35,6 +35,7 @@ def set_window_style():
     s = ttk.Style()
     s.configure('TFrame', background='lightgrey')
     s.configure('TLabel', background='lightgrey', foreground='black', font=('Arial', 10, 'bold'))
+    s.configure('Result.TLabel', background='lightgrey', foreground='black', font=('Arial', 9, 'bold'))
     s.configure('TButton', background='orange', foreground='black',
                 font=('Times new Roman', 10, 'bold'), padding=(10,5))
 
@@ -56,7 +57,7 @@ def reset_fields():
     elif answer == 'NO':
         messagebox.showinfo("Canselled", "Reset canceled")
 
-# seq = 7 33 73 642 4322 6677 0 1 2 
+# seq = 7 33 73 642 4322 6677 0 1 2
 
 window = tk.Tk()
 window.title("Sort prog")
@@ -74,9 +75,9 @@ input_frame.grid(pady=10)
 label_1 = ttk.Label(input_frame, text="Enter numbers, space separeted: ", style='TLabel')
 label_1.grid(row=0, columnspan=2, pady=10, padx=20)
 input_1 = tk.Entry(input_frame, bg='white')
-input_1.grid(row=1, columnspan=2, sticky='N')
-input_1.focus_set()
+input_1.grid(row=1, columnspan=2, sticky='')
 input_1.bind('<Return>', lambda event: get_input())
+input_1.focus_set()
 
 input_button = ttk.Button(input_frame, text='Submit', command=get_input, style='TButton')
 input_button.grid(row=2, columnspan=2, pady=10)
@@ -89,15 +90,15 @@ decrese_button = ttk.Button(input_frame, text='Decrease', command=sort_decrease)
 decrese_button.grid(row=3, column=1)
 decrese_button.bind('<Return>', lambda event: sort_decrease())
 
-result_frame = ttk.Frame(window, style='TFrame')
+reset_button = ttk.Button(input_frame, text='Reset', command=reset_fields)
+reset_button.grid(row=4, columnspan=2, pady=10)
+reset_button.bind('<Return>', lambda event=NONE:reset_fields())
+
+result_frame = ttk.Frame(window)
 result_frame.grid(row=5, columnspan=2, pady=10)
 
-result_label = ttk.Label(result_frame, style='TLabel', text="")
-result_label.grid(row=6, columnspan=2, pady=20)
-
-reset_button = ttk.Button(input_frame, text='Reset', command=reset_fields)
-reset_button.grid(row=7, columnspan=2, pady=20)
-reset_button.bind('<Return>', lambda event=NONE:reset_fields())
+result_label = ttk.Label(result_frame, style='Result.TLabel', text="")
+result_label.grid(row=5, columnspan=2, pady=10, sticky='SWNE')
 
 
 if __name__ == '__main__':
