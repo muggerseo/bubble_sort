@@ -49,13 +49,13 @@ def reset_fields():
     elif answer == 'NO':
         messagebox.showinfo("Canselled", "Reset canceled")
 
-#def set_window_style():
-s = ttk.Style()
-s.configure('Frame1.TFrame', foreground = 'blue', background = '#FF9800')
-s.configure('Frame2.TFrame', foreground = 'yellow', background = '#5F8670')
-s.configure('TLabel', foreground='black', background='lightgrey', font=('Arial', 10, 'bold'))
-s.configure('Result.TLabel', background='lightgrey', foreground='black', font=('Arial', 9, 'bold'))
-s.configure('TButton', background='orange', foreground='black', font=('Times new Roman', 10, 'bold'), padding=(10,5))
+def set_window_style():
+    s = ttk.Style()
+    s.configure('Frame1.TFrame', foreground = 'blue', background = '#FF9800')
+    s.configure('Frame2.TFrame', foreground = 'yellow', background = '#5F8670')
+    s.configure('TLabel', foreground='black', background='lightgrey', font=('Arial', 10, 'bold'))
+    s.configure('Result.TLabel', background='lightgrey', foreground='black', font=('Arial', 9, 'bold'))
+    s.configure('TButton', background='orange', foreground='black', font=('Times new Roman', 10, 'bold'), padding=(10,5))
 
 
 # seq = 7 33 73 642 4322 6677 0 1 2
@@ -68,10 +68,11 @@ window_height = 300
 #window.resizable(True,True)
 center_window(window, window_width, window_height)
 
-#set_window_style()
+set_window_style()
 
 #frame1---------------------------
 frame1 = ttk.Frame(window, style='Frame1.TFrame')
+frame1.grid()
 input_frame = ttk.Frame(window, style='TFrame')
 input_frame.grid(pady=10)
 
@@ -99,6 +100,7 @@ reset_button.bind('<Return>', lambda event=NONE:reset_fields())
 
 #frame2---------------------------
 frame2 = ttk.Frame(window, style='Frame2.TFrame')
+frame2.grid()
 result_frame = ttk.Frame(window)    
 result_frame.grid(row=5, columnspan=2, sticky='NSEW')
 
