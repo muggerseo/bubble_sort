@@ -51,12 +51,14 @@ def reset_fields():
 
 def set_window_style():
     s = ttk.Style()
-    s.configure('Frame1.TFrame', foreground = 'blue', background = '#FF9800')
-    s.configure('Frame2.TFrame', foreground = 'yellow', background = '#5F8670')
+    s.configure('Frame1.TFrame', background = '#FF9800')
+    s.configure('Frame2.TFrame', background = '#5F8670')
+    #s.map('Frame1.TFrame', background=[('active', '#FF9800'), ('!active', 'blue')])
+    #s.map('Frame2.TFrame', background=[('active', '#5F8670'), ('!active', 'yellow')])
+    
     s.configure('TLabel', foreground='black', background='lightgrey', font=('Arial', 10, 'bold'))
-    s.configure('Result.TLabel', background='lightgrey', foreground='black', font=('Arial', 9, 'bold'))
-    s.configure('TButton', background='orange', foreground='black', font=('Times new Roman', 10, 'bold'), padding=(10,5))
-
+    s.configure('Result.TLabel', foreground='black', background='#5F8670', font=('Arial', 9, 'bold'))
+    s.configure('TButton', foreground='black', background='orange', font=('Times new Roman', 10, 'bold'), padding=(10,5))
 
 # seq = 7 33 73 642 4322 6677 0 1 2
 
@@ -71,14 +73,12 @@ center_window(window, window_width, window_height)
 set_window_style()
 
 #frame1---------------------------
-frame1 = ttk.Frame(window, style='Frame1.TFrame')
-frame1.grid()
-input_frame = ttk.Frame(window, style='TFrame')
-input_frame.grid(pady=10)
+input_frame = ttk.Frame(window, style='Frame1.TFrame')
+input_frame.grid()
 
-label_1 = ttk.Label(input_frame, text="Enter numbers, space separeted: ", style='TLabel')
+label_1 = ttk.Label(input_frame, text="Enter numbers, space separeted: ", style='TLabel', justify='center')
 label_1.grid(row=0, columnspan=2, pady=10, padx=20)
-input_1 = tk.Entry(input_frame, bg='white')
+input_1 = tk.Entry(input_frame, bg='white', borderwidth=3)
 input_1.grid(row=1, columnspan=2, sticky='')
 input_1.bind('<Return>', lambda event: get_input())
 input_1.focus_set()
@@ -99,15 +99,11 @@ reset_button.grid(row=4, columnspan=2, pady=10)
 reset_button.bind('<Return>', lambda event=NONE:reset_fields())
 
 #frame2---------------------------
-frame2 = ttk.Frame(window, style='Frame2.TFrame')
-frame2.grid()
-result_frame = ttk.Frame(window)    
-result_frame.grid(row=5, columnspan=2, sticky='NSEW')
-
+result_frame = ttk.Frame(window, style='Frame2.TFrame')    
+result_frame.grid(row=5, column=0, columnspan=3, sticky='NSEW')
 
 result_label = ttk.Label(result_frame, style='Result.TLabel', text="")
-result_label.grid(row=6, columnspan=2, pady=10)
-
+result_label.grid(row=5, columnspan=1, pady=10, sticky='NSEW')
 
 if __name__ == '__main__':
     window.mainloop()
