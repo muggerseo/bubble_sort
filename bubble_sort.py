@@ -13,7 +13,7 @@ def get_input():
 def update_result_label():
     global seq
     result_label.config(text=f"Result:\n\n{seq}")
-    result_label.grid(row=5, columnspan=2, pady=20, sticky='WE')
+    result_label.grid(row=5, column=0, columnspan=3, sticky='NSWE')
 
 def sort_increase():
     global seq
@@ -52,13 +52,10 @@ def reset_fields():
 def set_window_style():
     s = ttk.Style()
     s.configure('Frame1.TFrame', background = '#FF9800')
-    s.configure('Frame2.TFrame', background = '#5F8670')
-    #s.map('Frame1.TFrame', background=[('active', '#FF9800'), ('!active', 'blue')])
-    #s.map('Frame2.TFrame', background=[('active', '#5F8670'), ('!active', 'yellow')])
-    
+    s.configure('Frame2.TFrame', background = '#5F8970')  
     s.configure('TLabel', foreground='black', background='lightgrey', font=('Arial', 10, 'bold'))
     s.configure('Result.TLabel', foreground='black', background='#5F8670', font=('Arial', 9, 'bold'))
-    s.configure('TButton', foreground='black', background='orange', font=('Times new Roman', 10, 'bold'), padding=(10,5))
+    s.configure('TButton', foreground='black', background='orange', font=('Times new Roman', 10, 'bold'),padding=(10,5))
 
 # seq = 7 33 73 642 4322 6677 0 1 2
 
@@ -101,9 +98,10 @@ reset_button.bind('<Return>', lambda event=NONE:reset_fields())
 #frame2---------------------------
 result_frame = ttk.Frame(window, style='Frame2.TFrame')    
 result_frame.grid(row=5, column=0, columnspan=3, sticky='NSEW')
+window.grid_rowconfigure(5, weight= 1)
+window.grid_columnconfigure(0, weight= 1)
 
-result_label = ttk.Label(result_frame, style='Result.TLabel', text="")
-result_label.grid(row=5, columnspan=1, pady=10, sticky='NSEW')
-
+result_label = ttk.Label(result_frame, style='Result.TLabel', text="", justify="center", anchor="center")
+result_label.grid(row=5, columnspan=2, pady=10)
 if __name__ == '__main__':
     window.mainloop()
