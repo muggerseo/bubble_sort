@@ -13,7 +13,7 @@ def get_input():
 def update_result_label():
     global seq
     result_label.config(text=f"Result:\n\n{seq}")
-    result_label.grid(row=5, column=0, columnspan=3, sticky='NSWE')
+    result_label.grid(row=5, column=0, columnspan=3)
 
 def sort_increase():
     global seq
@@ -54,8 +54,9 @@ def set_window_style():
     s.configure('Frame1.TFrame', background = '#FF9800')
     s.configure('Frame2.TFrame', background = '#5F8970')  
     s.configure('TLabel', foreground='black', background='lightgrey', font=('Arial', 10, 'bold'))
-    s.configure('Result.TLabel', foreground='black', background='#5F8670', font=('Arial', 9, 'bold'))
     s.configure('TButton', foreground='black', background='orange', font=('Times new Roman', 10, 'bold'),padding=(10,5))
+    s.configure('Result.TLabel', foreground='black', background='#5F8670', font=('Arial', 9, 'bold'))
+
 
 # seq = 7 33 73 642 4322 6677 0 1 2
 
@@ -73,7 +74,7 @@ set_window_style()
 input_frame = ttk.Frame(window, style='Frame1.TFrame')
 input_frame.grid()
 
-label_1 = ttk.Label(input_frame, text="Enter numbers, space separeted: ", style='TLabel', justify='center')
+label_1 = ttk.Label(input_frame, text="Enter numbers, space separeted: ", style='TLabel')
 label_1.grid(row=0, columnspan=2, pady=10, padx=20)
 input_1 = tk.Entry(input_frame, bg='white', borderwidth=3)
 input_1.grid(row=1, columnspan=2, sticky='')
@@ -97,11 +98,12 @@ reset_button.bind('<Return>', lambda event=NONE:reset_fields())
 
 #frame2---------------------------
 result_frame = ttk.Frame(window, style='Frame2.TFrame')    
-result_frame.grid(row=5, column=0, columnspan=3, sticky='NSEW')
+result_frame.grid(row=5, columnspan=2, sticky='nsew')
 window.grid_rowconfigure(5, weight= 1)
 window.grid_columnconfigure(0, weight= 1)
 
-result_label = ttk.Label(result_frame, style='Result.TLabel', text="", justify="center", anchor="center")
-result_label.grid(row=5, columnspan=2, pady=10)
+result_label = ttk.Label(result_frame, style='Result.TLabel', text="", anchor="center")
+result_label.grid(row=5, columnspan=2, pady=20, sticky='nsew')
+
 if __name__ == '__main__':
     window.mainloop()
